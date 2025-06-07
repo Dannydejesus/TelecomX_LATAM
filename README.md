@@ -2,68 +2,63 @@
 
 El presente informe documenta un análisis exploratorio de datos realizado sobre los datos de clientes de TelecomX con el objetivo de identificar los factores que influyen en la evasión de clientes (Churn). Comprender las causas de la evasión es crucial para implementar estrategias de retención efectivas y mejorar la rentabilidad de la empresa.
 
-## 🔹 Extracción de Datos
+## 1. **Uso** 
+El notebook está diseñado para ser ejecutado celda por celda. Cada sección (`📌 Extracción`, `🔧 Transformación`, `📊 Carga y análisis`) realiza una parte del proceso ETL y análisis.
 
-Los datos fueron obtenidos directamente de un archivo JSON alojado en un repositorio de GitHub.
+*   **Extracción:** Descarga y carga los datos brutos.
+*   **Transformación:** Limpia, transforma y crea nuevas características en los datos.
+*   **Carga y Análisis:** Carga los datos transformados, realiza análisis descriptivos y genera visualizaciones para identificar patrones de evasión.
 
--   Se utilizó la biblioteca `requests` para descargar el archivo.
--   La biblioteca `pandas` se empleó para cargar los datos en un DataFrame.
+Simplemente ejecuta las celdas en orden para replicar el análisis.
 
-## 🔹 Limpieza y Tratamiento de Datos
+## 2. **Estructura del proyecto** 
+*   `nombre_del_notebook.ipynb` (TelecomX_LATAM_Final.ipynb): El archivo principal que contiene todo el código de ETL y análisis.
+*   `datos_final.csv`: Archivo CSV generado con los datos limpios.
+*   `datos_final.json`: Archivo JSON generado con los datos limpios (orientación `records` con `lines=True`).
+*   `datos_final.xlsx`: Archivo Excel generado con los datos limpios.
 
-La fase de limpieza y tratamiento de datos fue fundamental para asegurar la calidad y estructura adecuada para el análisis:
+## 3. **Documentación técnica** 
+El código está comentado para explicar los pasos principales.
 
-1.  **Normalización:** Se aplicó `pd.json_normalize` para aplanar la estructura anidada del JSON original.
-2.  **Exploración Inicial:** Se realizaron comprobaciones de `head()`, `tail()`, `info()`, `columns`, `isnull().sum()` y `duplicated().sum()` para entender la estructura, identificar valores faltantes y duplicados.
-3.  **Identificación de Inconsistencias:** Se analizaron valores únicos en columnas categóricas y estadísticas descriptivas en columnas numéricas.
-4.  **Transformación de Variables Binarias:** Columnas como 'Churn', 'customer_Partner', etc., con valores 'Yes'/'No' se mapearon a 1/0 numéricos. Se manejaron valores vacíos.
-5.  **Conversión de Tipos de Datos:** La columna 'account_Charges_Total' se convirtió a tipo numérico (`float64`), manejando errores con `errors='coerce'`.
-6.  **Creación de Nueva Característica:** Se calculó la columna 'Cuentas_Diarias' (Cargos Mensuales / 30) para obtener una perspectiva del costo diario.
-7.  **Renombrado de Columnas:** Las columnas se renombraron a español para una mejor comprensión.
-8.  **Guardado de Datos Limpios:** El DataFrame procesado se guardó en formatos CSV (`datos_final.csv`) y JSON (`datos_final.json`).
+*   **Extracción:** Descarga el archivo JSON de la URL especificada, lo normaliza y realiza una inspección inicial (tipos de datos, nulos, duplicados).
+*   **Transformación:**
+    *   Convierte columnas binarias ('Yes'/'No') a 1/0.
+    *   Convierte la columna de cargos totales a numérica.
+    *   Crea la columna `Cuentas_Diarias` a partir de los cargos mensuales.
+    *   Renombra las columnas a español.
+    *   Guarda el DataFrame limpio en CSV y JSON.
+*   **Carga y Análisis:**
+    *   Lee el archivo JSON limpio.
+    *   Realiza análisis descriptivos (`describe()`).
+    *   Genera gráficos de barras interactivos (usando Plotly) para visualizar la distribución de evasión y la relación entre la evasión y variables categóricas clave (Género, Tipo de Contrato, Método de Pago, Servicio de Internet).
+    *   Genera gráficos de caja (Box plots) para analizar la distribución de variables numéricas (Cargos Mensuales, Cargos Totales, Meses Conectado, Cargos Diarios) en relación con el estado de evasión.
+    *   Calcula y visualiza la relación entre la cantidad de servicios contratados y el porcentaje de evasión.
+    *   Exporta el DataFrame limpio a un archivo Excel.
 
-Se confirmó la ausencia de duplicados y se manejaron los valores nulos.
+## 4. **Visualizaciones o resultados** –
+El notebook genera varias visualizaciones clave:
+*   Gráfico de barras de la distribución general de la evasión.
+*   Gráficos de barras que muestran el porcentaje de evasión por diferentes categorías (Tipo de Contrato, Método de Pago, etc.).
+*   Gráficos de caja que comparan la distribución de variables numéricas (Cargos, Antigüedad) entre clientes que se quedan y los que se van.
+*   Gráfico de barras que muestra el porcentaje de evasión por la cantidad de servicios contratados.
 
-## 🔹 Transformación de Datos
+Estos gráficos, junto con el análisis descriptivo, ayudan a identificar qué grupos de clientes tienen mayor probabilidad de evadir y qué factores (como la antigüedad, el tipo de contrato o los cargos) están más fuertemente asociados con la evasión.
 
-Esta etapa se centró en preparar las columnas para el análisis, incluyendo:
+## 5. **Contribuciones** 
+Actualmente, este proyecto se presenta como un análisis individual. Sin embargo, si deseas contribuir o tienes sugerencias, por favor, abre un issue en el repositorio de origen de los datos o contacta al autor.
 
--   Mapeo de columnas binarias ('Yes'/'No') a valores numéricos (1/0).
--   Conversión de 'account_Charges_Total' a numérico.
--   Creación de la columna 'Cuentas_Diarias'.
--   Renombrado de columnas a español.
--   Cálculo de la 'Cantidad_Servicios' sumando las columnas binarias de servicios.
+## 6. **Licencia** 
+La licencia del código proporcionado está generalmente asociada al repositorio de donde provienen los datos o a la forma en que el autor del análisis decida compartirlo. Si este código es una contribución a un proyecto existente, se adherirá a la licencia de dicho proyecto. Si es un análisis independiente, considera añadir una licencia como MIT o Apache 2.0 para permitir su uso y modificación.
 
-## 🔹 Carga y Análisis
+## 7. **Autores y reconocimiento** 
+*   **Autor del Análisis:** [Cientifico de Datos: Danny Gonzalez]
+*   **Fuente de los Datos:** Los datos provienen del repositorio de GitHub: `https://github.com/ingridcristh/challenge2-data-science-LATAM`. Agradecimiento a AluraLatam por proporcionar el conjunto de datos.
 
-Se cargaron los datos limpios y transformados para realizar un análisis exploratorio detallado:
+## 8. **Contacto y enlaces** 
+*   **Autor:** [Danny Gonzalez]
+*   **Perfil de LinkedIn:** [www.linkedin.com/in/danny-gonzález-data-scientist]
+*   **Perfil de GitHub:** [https://github.com/Dannydejesus]
+*   **Correo Electrónico:** [dannyg260580@hotmail.com]
 
--   **Análisis Descriptivo:** Se utilizó `describe()` para obtener estadísticas resumidas.
--   **Distribución de Evasión:** Visualización con un gráfico de barras (`plotly.express`) mostrando el conteo de clientes que permanecen (0) y los que se dan de baja (1).
--   **Análisis por Variables Categóricas:** Se examinó la tasa de evasión (%) para 'Género', 'Tipo_Contrato', 'Método_Pago' y 'Servicio_Internet' utilizando gráficos de barras agrupadas. Se identificó que los contratos mensuales y el método de pago "Electronic check" tienen tasas de evasión más altas.
--   **Análisis por Variables Numéricas:** Se exploró la relación entre 'Cargos_Mensuales', 'Cargos_Totales', 'Meses_Conectado' y 'Cargos_Diarios' con la evasión utilizando gráficos de caja (`plotly.express`). Se observó que los clientes que se dan de baja tienden a tener mayor antigüedad, mayores cargos mensuales/totales/diarios y menor antigüedad.
--   **Análisis por Cantidad de Servicios:** Se calculó el porcentaje de evasión por el número de servicios contratados y se visualizó con un gráfico de barras. Los clientes con menos servicios muestran una mayor tasa de evasión.
+---
 
-## 🔹 Conclusiones e Insights
-
-Los principales hallazgos del análisis incluyen:
-
--   La antigüedad del cliente, los costos asociados al servicio, el tipo de contrato y el método de pago son factores significativos en la evasión.
--   Los clientes con menor antigüedad y contratos mensuales son los más propensos a darse de baja.
--   Clientes con cargos mensuales/diarios más altos tienen una mayor probabilidad de evasión.
--   Los clientes que utilizan pagos electrónicos presentan una tasa de evasión más alta.
--   Una menor cantidad de servicios contratados se asocia con una mayor probabilidad de evasión.
-
-## 🔹 Recomendaciones
-
-Basado en los insights obtenidos, se proponen las siguientes recomendaciones estratégicas para reducir la evasión:
-
-1.  **Programas de Retención Temprana:** Enfocarse en retener a los clientes recién llegados.
-2.  **Incentivar Contratos a Largo Plazo:** Ofrecer beneficios para motivar la contratación de planes de uno o dos años.
-3.  **Revisión de Estructuras de Cargos:** Evaluar la percepción de valor frente al costo para clientes con facturas elevadas.
-4.  **Optimización de Métodos de Pago Electrónico:** Investigar y abordar las razones detrás de la alta evasión en este segmento.
-5.  **Estrategias de Cross-selling/Up-selling:** Promover servicios adicionales para aumentar la cantidad de servicios por cliente y potencialmente mejorar la retención.
-6.  **Segmentación para Campañas Dirigidas:** Utilizar los factores identificados para segmentar a los clientes en riesgo y personalizar las estrategias de retención.
-7.  **Monitoreo Continuo:** Implementar un sistema para rastrear continuamente los indicadores clave de evasión.
-
-La implementación de estas recomendaciones, respaldada por un monitoreo constante, puede ayudar a TelecomX a mejorar significativamente sus tasas de retención.
