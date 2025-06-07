@@ -1,4 +1,4 @@
-##1. **Título del proyecto** – Análisis de Evasión de Clientes (Churn) en TelecomX
+1. **Título del proyecto** – Análisis de Evasión de Clientes (Churn) en TelecomX
 2. **Descripción** – Este proyecto realiza un análisis exploratorio y descriptivo sobre un conjunto de datos de clientes de una empresa de telecomunicaciones (TelecomX) con el objetivo de identificar los principales factores que influyen en la evasión de clientes (Churn). Se lleva a cabo un proceso de extracción, transformación y carga (ETL) de los datos, seguido de un análisis visual y estadístico para extraer insights y proponer recomendaciones estratégicas de retención.
 3. **Instalación** –
    - Clonar el repositorio: `https://github.com/alura-cursos/challenge2-data-science-LATAM/blob/main/TelecomX_Data.json`
