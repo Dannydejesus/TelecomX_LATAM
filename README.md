@@ -35,7 +35,7 @@ El código está comentado para explicar los pasos principales.
     *   Calcula y visualiza la relación entre la cantidad de servicios contratados y el porcentaje de evasión.
     *   Exporta el DataFrame limpio a un archivo Excel.
 
-## 4. **Visualizaciones o resultados** –
+## 4. **Visualizaciones o resultados** 
 El notebook genera varias visualizaciones clave:
 *   Gráfico de barras de la distribución general de la evasión.
 *   Gráficos de barras que muestran el porcentaje de evasión por diferentes categorías (Tipo de Contrato, Método de Pago, etc.).
