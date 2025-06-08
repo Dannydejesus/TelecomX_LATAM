@@ -60,7 +60,7 @@ Actualmente, este proyecto se presenta como un análisis individual. Sin embargo
 ## 10. **Licencia** 
 La licencia del código proporcionado está generalmente asociada al repositorio de donde provienen los datos o a la forma en que el autor del análisis decida compartirlo. Si este código es una contribución a un proyecto existente, se adherirá a la licencia de dicho proyecto. Si es un análisis independiente, considera añadir una licencia como MIT o Apache 2.0 para permitir su uso y modificación.
 
-## 11. **Autores y reconocimiento** 
+## 11. **Autor** 
 *   **Autor del Análisis:** Cientifico de Datos: Danny Gonzalez
 *   **Fuente de los Datos:** Los datos provienen del repositorio de GitHub: `https://github.com/ingridcristh/challenge2-data-science-LATAM`. Agradecimiento a AluraLatam por proporcionar el conjunto de datos.
 
